@@ -82,4 +82,4 @@ VOLUME /var/lib/bitcoin
 EXPOSE $ports
 
 # Run entrypoint script
-ENTRYPOINT ["/usr/local/bin/bitcoind", "-datadir=/var/lib/bitcoin"]
+ENTRYPOINT ["/usr/local/bin/bitcoind"]

@@ -23,13 +23,12 @@ Because `bitcoind` supports so many options, it's best to configure it using a c
 
 A user-friendly config file generator can be found here: [https://jlopp.github.io/bitcoin-core-config-generator/](https://jlopp.github.io/bitcoin-core-config-generator/).
 
-
 ### Persistent Data
-The container's persistent data, including configuration and blockchain data are stored at _/var/lib/bitcoin_.
+_A configuration file needs to be mounted and referenced with the `-conf` option._  The default path `bitcoind` will look at without setting `-conf=` is _/home/nonroot/.bitcoin/bitcoin.conf_.
 
-When running the container image with Docker, Kubernetes, OpenShift, etc., mount your volumes at _/var/lib/bitcoind_.
+The container's persistent data, including configuration and blockchain data should be mounted at _/var/lib/bitcoin_. Be sure to set your `datadir` option in your configuration file to _/var/lib/bitcoin_.
 
-_You should also mount your own configuration file_.  The default path `bitcoind` will look at without setting `-conf=` is _/home/nonroot/.bitcoin/bitcoin.conf_.
+Therefore, the simplest way to get the container up and running would be to mount your config file at _/home/nonroot/.bitcoin/bitcoin.conf_ and forego setting the `-conf` option in the command line.
 
 ### User/Group
 Because the container uses Chainguard's image as a base, the `bitcoind` process is run as a non-root user. The username and group name is `nonroot`.  The UID and GID are set to _65532_.
