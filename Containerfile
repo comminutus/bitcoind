@@ -68,7 +68,7 @@ RUN $wget -P $license_dir $bitcoin_license_url
 ########################################################################################################################
 # Final image
 ########################################################################################################################
-FROM cgr.dev/chainguard/glibc-dynamic as final
+FROM cgr.dev/chainguard/glibc-dynamic:latest-dev as final
 ARG dist_dir license_dir ports
 
 # Install binaries
@@ -82,4 +82,4 @@ VOLUME /var/lib/bitcoin
 EXPOSE $ports
 
 # Run entrypoint script
-ENTRYPOINT ["/usr/local/bin/bitcoind"]
+ENTRYPOINT ["/usr/local/bin/bitcoind", "-datadir=/var/lib/bitcoin"]

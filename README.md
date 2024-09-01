@@ -24,9 +24,10 @@ Because `bitcoind` supports so many options, it's best to configure it using a c
 A user-friendly config file generator can be found here: [https://jlopp.github.io/bitcoin-core-config-generator/](https://jlopp.github.io/bitcoin-core-config-generator/).
 
 ### Persistent Data
-_A configuration file needs to be mounted and referenced with the `-conf` option._  The default path `bitcoind` will look at without setting `-conf=` is _/home/nonroot/.bitcoin/bitcoin.conf_.
+*Important*: A configuration file should be mounted and referenced with the `-conf` option if it's not mounted in the default location. The default location `bitcoind` will look at without the
+need to set `-conf=` is _/home/nonroot/.bitcoin/bitcoin.conf_.
 
-The container's persistent data, including configuration and blockchain data should be mounted at _/var/lib/bitcoin_. Be sure to set your `datadir` option in your configuration file to _/var/lib/bitcoin_.
+The container's persistent data, including configuration and blockchain data is located at _/var/lib/bitcoin_. If you're using something other than an anonymous volume, be sure to mount it at this location.
 
 Therefore, the simplest way to get the container up and running would be to mount your config file at _/home/nonroot/.bitcoin/bitcoin.conf_ and forego setting the `-conf` option in the command line.
 
